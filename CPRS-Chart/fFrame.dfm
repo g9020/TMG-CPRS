@@ -176,7 +176,6 @@ inherited frmFrame: TfrmFrame
     ParentFont = False
     TabOrder = 1
     Visible = False
-    ExplicitHeight = 793
     object wbNoPatientSelected: TWebBrowser
       Left = 1
       Top = 1
@@ -202,7 +201,6 @@ inherited frmFrame: TfrmFrame
     Align = alClient
     Color = clInactiveBorder
     TabOrder = 0
-    ExplicitHeight = 793
     object bvlPageTop: TBevel
       Left = 1
       Top = 41
@@ -855,8 +853,8 @@ inherited frmFrame: TfrmFrame
           object lblVistaWeb: TLabel
             Left = 2
             Top = 2
-            Width = 46
-            Height = 13
+            Width = 65
+            Height = 14
             Cursor = crHandPoint
             Align = alClient
             Alignment = taCenter
@@ -869,6 +867,8 @@ inherited frmFrame: TfrmFrame
             ParentFont = False
             Layout = tlCenter
             OnClick = pnlVistaWebClick
+            ExplicitWidth = 46
+            ExplicitHeight = 13
           end
         end
         object pnlCIRN: TKeyClickPanel
@@ -897,7 +897,7 @@ inherited frmFrame: TfrmFrame
           object lblCIRN: TLabel
             Left = 2
             Top = 2
-            Width = 63
+            Width = 65
             Height = 13
             Align = alClient
             Alignment = taCenter
@@ -911,11 +911,12 @@ inherited frmFrame: TfrmFrame
             ParentFont = False
             Layout = tlCenter
             OnClick = pnlCIRNClick
+            ExplicitWidth = 63
           end
           object lblLoadSequelPat: TLabel
             Left = 2
             Top = 2
-            Width = 52
+            Width = 65
             Height = 13
             Hint = 'Load patient who is selected in SequelMed'
             Align = alClient
@@ -929,6 +930,7 @@ inherited frmFrame: TfrmFrame
             ParentFont = False
             Layout = tlCenter
             OnClick = lblLoadSequelPatClick
+            ExplicitWidth = 52
           end
         end
       end
@@ -974,7 +976,7 @@ inherited frmFrame: TfrmFrame
           object lblFlag: TLabel
             Left = 2
             Top = 22
-            Width = 25
+            Width = 85
             Height = 13
             Cursor = crHandPoint
             Align = alBottom
@@ -992,6 +994,7 @@ inherited frmFrame: TfrmFrame
             OnClick = pnlFlagClick
             OnMouseDown = pnlFlagMouseDown
             OnMouseUp = pnlFlagMouseUp
+            ExplicitWidth = 25
           end
         end
       end
@@ -1178,7 +1181,6 @@ inherited frmFrame: TfrmFrame
         end>
       PopupMenu = popAlerts
       SizeGrip = False
-      ExplicitTop = 771
     end
     object pnlMain: TPanel
       Left = 1
@@ -1188,7 +1190,6 @@ inherited frmFrame: TfrmFrame
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitHeight = 729
       object frameLRSplitter: TSplitter
         Left = 781
         Top = 0
@@ -1208,7 +1209,6 @@ inherited frmFrame: TfrmFrame
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitHeight = 729
         object pnlPageL: TPanel
           Left = 0
           Top = 0
@@ -1222,7 +1222,6 @@ inherited frmFrame: TfrmFrame
           Font.Style = []
           ParentFont = False
           TabOrder = 0
-          ExplicitHeight = 707
           object lstCIRNLocations: TORListBox
             Left = 422
             Top = 5
@@ -1283,7 +1282,6 @@ inherited frmFrame: TfrmFrame
         Align = alClient
         TabOrder = 1
         OnResize = pnlMainRResize
-        ExplicitHeight = 729
         object pnlPageR: TPanel
           Left = 1
           Top = 1
@@ -1291,7 +1289,6 @@ inherited frmFrame: TfrmFrame
           Height = 725
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 705
         end
         object tabPageR: TTabControl
           Left = 1
@@ -1401,7 +1398,6 @@ inherited frmFrame: TfrmFrame
       EBFFD8E9ECFED8E9ECFED6E5E8FFD8E9ECFED8E9ECFED9C7C9FFD98D8FFEDB53
       54FFDF3B3BFFDF2728FFDF2728FFDE3C3CFFDB5354FFDA9091FED9C6C9FFD8E9
       ECFED8E9ECFED6E5E8FFD8E9ECFED8E9ECFED7E8EBFFD8E9ECFE}
-    ExplicitTop = 425
   end
   inherited amgrMain: TVA508AccessibilityManager
     Left = 8

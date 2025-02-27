@@ -1650,7 +1650,13 @@ begin
   mnuFileOpenClick(Self);
   Enabled := True;
   // If TimedOut, Close has already been called.
-  if not TimedOut and (Patient.DFN = '') then Close;
+  // 1/28/25 Commenting this out to make CPRS run even if an initial patient wasn't selected.
+  //        if not TimedOut and (Patient.DFN = '') then Close;
+  if not Timedout and (Patient.DFN = '') then begin   //TMG adding entire if 1/28/25
+    SetActiveTab(0);
+    HideEverything();
+    Application.Processmessages;
+  end;
 end;
 
 procedure TfrmFrame.FormDestroy(Sender: TObject);

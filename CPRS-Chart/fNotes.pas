@@ -306,6 +306,8 @@ type
     TOCImages: TImageList;
     btnOpenTOC: TSpeedButton;
     btnOpenTOC2: TSpeedButton;
+    timRunMDM: TTimer;
+    procedure timRunMDMTimer(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure btnOpenTOCClick(Sender: TObject);
     procedure ViewThisTocClick(Sender: TObject);
@@ -511,6 +513,7 @@ type
     clTMGHospitalColor : TColor;                    //elh 4/30/19
     boolAutosaving : Boolean;                       //elh 11/18/16
     CallBackProcs : TNotifyPCEEventList;            //kt 5/11/23  This will serve as a callback stack to achieve a pseudo-closure for a non-modal process
+    InitialMDM : Boolean;                           //elh 1/23/25
     procedure HandleInsertDate(Sender: TObject);    //kt
     procedure HandleHTMLObjPaste(Sender : TObject; var AllowPaste : boolean); //kt 8/16
     function GetClipHTMLText(var szText:string):Boolean;
@@ -5038,6 +5041,9 @@ begin
       FilterTitlesForHidden(tmpList,HiddenCount); //kt added
       if btnAdminDocs.Down then FilterTitlesForAdmin(tmpList,HiddenCount); //elh added 1/24/17
       CreateListItemsforDocumentTree(FDocList, tmpList, StrToIntDef(Status, 0), GroupBy, TreeAscending, CT_NOTES);
+      //if GroupBy = 'D' then begin
+      //  CreateListItemsforDocumentTree(FDocList, tmpList, StrToIntDef(Status, 0), 'C', TreeAscending, CT_NOTES);
+      //end;
       // Text Search CQ: HDS00002856 ---------------------------------------
       if FCurrentContext.SearchString<>''  then begin  // Text Search CQ: HDS00002856
         NoteMatches := 0;
@@ -5089,6 +5095,9 @@ begin
       lblNotes.Caption := lblNotes.Caption + ' (Total: ' + NoteTotal + ')';
       // Text Search CQ: HDS00002856 ---------------------------------------
       UpdateTreeView(FDocList, tvNotes);
+
+
+
     end;
     with tvNotes do begin
       uChanging := True;
@@ -5877,14 +5886,14 @@ begin
       SendErrors := SendErrors + piece(Result,'^',2);
       if UnpastedHTML<>'' then UnpastedHTML := UnpastedHTML + '<p>';
       UnpastedHTML := UnpastedHTML + TotalHTML.text;
-       {    ORIGINAL CODE 11/6/23
+       {  ADDING  BACK THIS CODE. I'M NOT SURE WHY IT WAS REMOVED  1/23/25  ORIGINAL CODE 11/6/23   }
        Response := messagedlg(TargetName+' tag was not found in the note'+#13#10+'Would you like to insert it at the current cursor position?'+#13#10+'Selecting "NO" will copy it to your clipboard',mtError,[mbYes,mbNo,mbCancel],0);
        if Response=mrYes then begin
          HTMLEditor.InsertHTMLAtCaret(TotalHTML.text);
        end else if Response = mrNo then begin
          SetClipText(TotalHTML.Text);
          ShowMsg('You can paste the text into a note.');
-       end;}
+       end;
     end;
   finally
     TotalHTML.Free;
@@ -5968,11 +5977,23 @@ end;
 
 procedure TfrmNotes.HandleMDMClosure(Sender: TObject);
 var SendErrors,Messages:string;
+     Relaunch : Boolean;
 begin
   if not assigned(frmMDMGrid) then exit;
   if frmMDMGrid.Result <> true then exit;
+  Relaunch := frmMDMGrid.Relaunch;
   InsertMDMGrid(frmMDMGrid.HTMLTable,SendErrors,Messages);
   FreeAndNil(frmMDMGrid);
+  Application.ProcessMessages;
+  //if (InitialMDM) and (messagedlg('Would you like to enter another code?',mtConfirmation,[mbYes,mbNo],0)=mrYes) then begin
+  if Relaunch then begin
+  
+    timRunMDM.enabled := true;
+  //  mnuLaunchMDMClick(Sender);
+  //  if not assigned(frmMDMGrid) then frmMDMGrid := TfrmMDMGrid.Create(Self);
+  //  frmMDMGrid.OnCloseForm := HandleMDMClosure;  //<--- this function will FreeAndNil form.
+  //  frmMDMGrid.ShowModal;
+  end;
 end;
 
 procedure TfrmNotes.mnuLaunchEncounterClick(Sender: TObject);
@@ -5982,9 +6003,11 @@ begin
   cmdPCEClick(Sender);  //launch encounter form
 end;
 
+
 procedure TfrmNotes.mnuLaunchMDMClick(Sender: TObject);
 begin
   inherited;
+  InitialMDM := True;
   if not assigned(frmMDMGrid) then frmMDMGrid := TfrmMDMGrid.Create(Self);
   frmMDMGrid.OnCloseForm := HandleMDMClosure;  //<--- this function will FreeAndNil form.
   frmMDMGrid.Show;
@@ -6644,6 +6667,14 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TfrmNotes.timRunMDMTimer(Sender: TObject);
+begin
+  inherited;
+  timRunMDM.enabled := false;
+  mnuLaunchMDMClick(Sender);
+  InitialMDM := False;
 end;
 
 procedure TfrmNotes.ToggleHTMLEditMode;

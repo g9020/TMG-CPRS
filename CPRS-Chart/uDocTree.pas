@@ -206,6 +206,20 @@ begin
                   x3 := x2 + Copy(x1, 1, 3) + U + MixedCase(x1) + U + IntToStr(Context) + MixedCase(Copy(x1, 1, 3));
                   if (Copy(MyTitle, 1, 8) <> 'Addendum') and (AList.IndexOf(x3) = -1) then
                     AList.Add(x3);   // '2980324Adm^Mar 24,98'
+                  //TMG ADDITION  1/28/25
+                  Dest.Add(x);
+                  x1 := Piece(Piece(x, U, 18), ';', 1);                    // Visit date
+                  x2 := Piece(Piece(Piece(x, U, 18), ';', 2), '.', 1);     // Visit date (FM)   no time - v15.4
+                  if x2 = '' then begin
+                    x2 := 'No Creation Date';
+                    x1 := Piece(x1, ':', 1) + ':  No Creation Date';
+                  end;
+                  if MyParent = IntToStr(Context) then
+                    SetPiece(x, U, 14, MyParent + x2 + Copy(x1, 1, 3));    // '2980324Adm'
+                  x3 := x2 + Copy(x1, 1, 3) + U + MixedCase(x1) + U + IntToStr(Context) + MixedCase(Copy(x1, 1, 3));
+                  if (Copy(MyTitle, 1, 8) <> 'Addendum') and (AList.IndexOf(x3) = -1) then
+                    AList.Add(x3);   // '2980324Adm^Mar 24,98'
+                  //END TMG ADDITION
                 end;
           'L':  begin
                   if MyParent = IntToStr(Context) then                  // keep ID notes together, or
@@ -246,6 +260,21 @@ begin
                   x3 := x1 + U + MixedCase(x1) + U + IntToStr(Context);
                   if (AList.IndexOf(x3) = -1) then AList.Add(x3);
                 end;*)
+     {      'C':  begin
+                             // TMG ADDING THIS PART   1/28/25
+                  x1 := Piece(Piece(x, U, 18), ';', 1);                    // Visit date
+                  x2 := Piece(Piece(Piece(x, U, 18), ';', 2), '.', 1);     // Visit date (FM)   no time - v15.4
+                  if x2 = '' then begin
+                    x2 := 'No Creation Date';
+                    x1 := Piece(x1, ':', 1) + ':  No Creation Date';
+                  end;
+                  if MyParent = IntToStr(Context) then
+                    SetPiece(x, U, 14, MyParent + x2 + Copy(x1, 1, 3));    // '2980324Adm'
+                  x3 := x2 + Copy(x1, 1, 3) + U + MixedCase(x1) + U + IntToStr(Context) + MixedCase(Copy(x1, 1, 3));
+                  if (Copy(MyTitle, 1, 8) <> 'Addendum') and (AList.IndexOf(x3) = -1) then
+                    AList.Add(x3);   // '2980324Adm^Mar 24,98'
+                  //END TMG ADDITION
+                end;    }
         end; {case}
         Dest.Add(x);
       end; {for}
@@ -254,6 +283,7 @@ begin
       if GroupBy <> '' then if GroupBy[1] ='D' then begin
         AList.Add('Adm^Inpatient Notes' + U + IntToStr(Context));
         AList.Add('Vis^Outpatient Notes' + U + IntToStr(Context));
+        AList.Add('Cre^Outpatient Notes By Creation Date' + U + IntToStr(Context));  //1/25/25
       end;
       if (Context=9) or (Context=10) or (Context=11) then
         Dest.Insert(0, IntToStr(Context) + '^' + NC_TV_TEXT[TabIndex, Context]+' ('+inttostr(SrcList.Count)+')' + '^^^^^^^^^^^%^0')

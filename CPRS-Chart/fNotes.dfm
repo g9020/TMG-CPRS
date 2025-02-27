@@ -3,7 +3,7 @@ inherited frmNotes: TfrmNotes
   Top = 115
   HelpContext = 5000
   Caption = 'Progress Notes Page'
-  ClientHeight = 734
+  ClientHeight = 754
   ClientWidth = 1025
   HelpFile = 'overvw'
   Menu = mnuNotes
@@ -13,30 +13,30 @@ inherited frmNotes: TfrmNotes
   OnResize = FormResize
   OnShow = FormShow
   ExplicitWidth = 1033
-  ExplicitHeight = 788
+  ExplicitHeight = 808
   PixelsPerInch = 96
   TextHeight = 13
   inherited shpPageBottom: TShape
-    Top = 729
+    Top = 749
     Width = 1025
     ExplicitTop = 358
     ExplicitWidth = 679
   end
   inherited sptHorz: TSplitter
     Left = 260
-    Height = 729
+    Height = 749
     ParentColor = False
     ExplicitLeft = 261
     ExplicitHeight = 989
   end
   inherited pnlLeft: TPanel
     Width = 260
-    Height = 729
+    Height = 749
     ExplicitWidth = 260
-    ExplicitHeight = 729
+    ExplicitHeight = 749
     object lblSpace1: TLabel
       Left = 0
-      Top = 684
+      Top = 704
       Width = 260
       Height = 3
       Align = alBottom
@@ -47,7 +47,7 @@ inherited frmNotes: TfrmNotes
     end
     object cmdNewNote: TORAlignButton
       Left = 0
-      Top = 687
+      Top = 707
       Width = 260
       Height = 21
       Align = alBottom
@@ -58,7 +58,7 @@ inherited frmNotes: TfrmNotes
     end
     object cmdPCE: TORAlignButton
       Left = 0
-      Top = 708
+      Top = 728
       Width = 260
       Height = 21
       Align = alBottom
@@ -72,13 +72,13 @@ inherited frmNotes: TfrmNotes
       Left = 0
       Top = 33
       Width = 260
-      Height = 651
+      Height = 671
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
       object splDrawers: TSplitter
         Left = 0
-        Top = 648
+        Top = 668
         Width = 260
         Height = 3
         Cursor = crVSplit
@@ -110,7 +110,7 @@ inherited frmNotes: TfrmNotes
         Left = 0
         Top = 0
         Width = 260
-        Height = 648
+        Height = 668
         Align = alClient
         Constraints.MinWidth = 30
         HideSelection = False
@@ -384,13 +384,13 @@ inherited frmNotes: TfrmNotes
   inherited pnlRight: TPanel
     Left = 264
     Width = 761
-    Height = 729
+    Height = 749
     ExplicitLeft = 264
     ExplicitWidth = 761
-    ExplicitHeight = 729
+    ExplicitHeight = 749
     object sptVert: TSplitter
       Left = 0
-      Top = 680
+      Top = 700
       Width = 761
       Height = 4
       Cursor = crVSplit
@@ -400,7 +400,7 @@ inherited frmNotes: TfrmNotes
     end
     object memPCEShow: TRichEdit
       Left = 0
-      Top = 684
+      Top = 704
       Width = 761
       Height = 45
       Align = alBottom
@@ -420,14 +420,14 @@ inherited frmNotes: TfrmNotes
       Left = 0
       Top = 0
       Width = 761
-      Height = 680
+      Height = 700
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
       OnExit = pnlReadExit
       DesignSize = (
         761
-        680)
+        700)
       object lblTitle: TOROffsetLabel
         Left = 0
         Top = 0
@@ -498,7 +498,7 @@ inherited frmNotes: TfrmNotes
         Left = 0
         Top = 116
         Width = 761
-        Height = 564
+        Height = 584
         Align = alClient
         Color = clCream
         Ctl3D = True
@@ -574,7 +574,7 @@ inherited frmNotes: TfrmNotes
         Left = 0
         Top = 116
         Width = 761
-        Height = 564
+        Height = 584
         Align = alClient
         BevelOuter = bvNone
         Color = clBtnShadow
@@ -583,7 +583,7 @@ inherited frmNotes: TfrmNotes
           Left = 0
           Top = 20
           Width = 761
-          Height = 544
+          Height = 564
           Align = alClient
           BevelOuter = bvNone
           Color = clBtnShadow
@@ -866,7 +866,7 @@ inherited frmNotes: TfrmNotes
       Left = 0
       Top = 0
       Width = 761
-      Height = 680
+      Height = 700
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
@@ -876,7 +876,7 @@ inherited frmNotes: TfrmNotes
         Left = 0
         Top = 67
         Width = 761
-        Height = 613
+        Height = 633
         Align = alClient
         BevelOuter = bvNone
         Caption = 'pnlTextWrite'
@@ -885,7 +885,7 @@ inherited frmNotes: TfrmNotes
           Left = 0
           Top = 0
           Width = 761
-          Height = 613
+          Height = 633
           Align = alClient
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -908,7 +908,7 @@ inherited frmNotes: TfrmNotes
         Left = 0
         Top = 67
         Width = 761
-        Height = 613
+        Height = 633
         Align = alClient
         BevelOuter = bvNone
         Color = clInactiveBorder
@@ -918,7 +918,7 @@ inherited frmNotes: TfrmNotes
           Left = 0
           Top = 18
           Width = 761
-          Height = 595
+          Height = 615
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 0
@@ -967,8 +967,8 @@ inherited frmNotes: TfrmNotes
             Left = 23
             Top = 0
             Width = 145
-            Height = 18
-            ItemHeight = 0
+            Height = 21
+            ItemHeight = 13
             ParentShowHint = False
             ShowHint = True
             TabOrder = 0
@@ -2769,5 +2769,11 @@ inherited frmNotes: TfrmNotes
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+  end
+  object timRunMDM: TTimer
+    Enabled = False
+    OnTimer = timRunMDMTimer
+    Left = 344
+    Top = 128
   end
 end

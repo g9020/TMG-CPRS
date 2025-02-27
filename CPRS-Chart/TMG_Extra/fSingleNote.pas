@@ -8,7 +8,7 @@ uses
   Dialogs, StdCtrls, Buttons, ToolWin, ComCtrls, ExtCtrls, TMGHTML2,
   OleCtrls, SHDocVw, MSHTML, ORFn, fLabs, uImages, uReminders,
   rTIU, uTIU, rCore, fDrawers, ORNet,Trpcb, WinSock, uPCE,
-  ORCtrls, ActnList, Menus, fReminderDialog;
+  ORCtrls, ActnList, Menus, fReminderDialog, ImgList;
 
 type
   tSNModes = (snmNone, snmLab, snmReport, snmNurse, snmMessenger, snmRecordsRequest, snmReminder);
@@ -69,6 +69,7 @@ type
     cmbUsers: TComboBox;
     chkCopyToClipboard: TCheckBox;
     chkSaveWOSignature: TCheckBox;
+    btnSaveWAddlSigner: TSpeedButton;
     procedure chkSaveWOSignatureClick(Sender: TObject);
     procedure chkCopyToClipboardClick(Sender: TObject);
     procedure btnSaveWSendClick(Sender: TObject);
@@ -223,12 +224,12 @@ begin
       lblPtAge.Caption := FormatFMDateTime('mmm dd,yyyy', Patient.DOB) + ' (' + IntToStr(Patient.Age) + ')';
       pnlPatient.Caption := lblPtName.Caption + ' ' + lblPtSSN.Caption + ' ' + lblPtAge.Caption;
    end;
-   if Mode=snmReminder then begin
-     frmSingleNote.ShowModal;
-   end else begin
+   //   1/20/25  if Mode=snmReminder then begin   <- always open as Non-Modal and Stay on Top
+   //   1/20/25    frmSingleNote.ShowModal;
+   //   1/20/25  end else begin
      frmSingleNote.FormStyle := fsStayOnTop;
      frmSingleNote.Show;  //<-- NOTE: the OnClose event sets close action to caFree --> all will be freed automatically
-   end;
+   //   1/20/25  end;
    //FreeAndNil(frmSingleNote);
 end;
 
@@ -1359,8 +1360,8 @@ begin
       cmbUsers.Visible := True;
       UserParamName := 'Last Lab User Selected';
       LoadUsers;
-      btnSaveNoSend.Caption := 'Save Note w/'+#13#10+'Addl Signer';
-      btnSaveNoSend.Visible := (NotifyOK=false);
+      btnSaveWAddlSigner.Caption := 'Save Note w/'+#13#10+'Addl Signer';
+      btnSaveWAddlSigner.Visible := (NotifyOK=false);
       if NotifyOK then btnSave.Caption := 'Save w/'+#13#10+'Addl Signer';
       pnlButton.height := 84;
     end;
@@ -1374,8 +1375,8 @@ begin
       cmbUsers.Visible := True;
       UserParamName := 'Last Report User Selected';
       LoadUsers;
-      btnSaveNoSend.Caption := 'Save Note w/'+#13#10+'Addl Signer';
-      btnSaveNoSend.Visible := (NotifyOK=false);
+      btnSaveWAddlSigner.Caption := 'Save Note w/'+#13#10+'Addl Signer';
+      btnSaveWAddlSigner.Visible := (NotifyOK=false);
       if NotifyOK then btnSave.Caption := 'Save w/'+#13#10+'Addl Signer';
       pnlButton.height := 57;
     end;
@@ -1588,6 +1589,7 @@ begin
       label1.visible := not chkSaveWOSignature.Checked;
       cmbUsers.Visible := not chkSaveWOSignature.Checked;
       btnSaveNoSend.Visible := not chkSaveWOSignature.Checked;
+      btnSaveWAddlSigner.Visible := not chkSaveWOSignature.Checked;
    end;
 end;
 

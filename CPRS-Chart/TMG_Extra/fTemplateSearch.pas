@@ -31,7 +31,7 @@ unit fTemplateSearch;
  You may view details of the GNU General Public License at this URL:
  http://www.gnu.org/licenses/
  *)
-
+                    
 
 interface
 
@@ -321,7 +321,9 @@ const
           //until there has been a 0.5 second pause.
         end;
       end;
-    end else if fTemplateSearch.SearchMode = TsmTopic then begin
+     end;    //added 2/11/25
+    //end else if fTemplateSearch.SearchMode = TsmTopic then begin
+    if fTemplateSearch.SearchMode = TsmTopic then begin      //2/11/25, moved outside the length check
         if LastChar=' ' then begin
           DoTopicSearch; //Launch search directly after every space
         end else begin
@@ -364,7 +366,7 @@ procedure TfrmTemplateSearch.btnTemAcceptClick(Sender: TObject);
       SelType := piece2(SavedResults.Strings[lbTemMatches.ItemIndex],'#@@#',3);
       if SelType='DIALOG' then SearchMode := TsmDialog;
       if SelType='TEMPLATE' then SearchMode := TsmTemplate;
-      if SelType='TOPIC' then SearchMode := TsmTopic;
+      if SelType='PATIENT-SPECIFIC TOPIC' then SearchMode := TsmTopic;
     end;
     if SearchMode=TsmAll then begin  //Shouldn't be needed but just in case
       messagedlg('There was an unknown error determining the type of selection.'+#13#10+'Try changing to the appropriate tab and select from there.',mtError,[mbOk],0);
@@ -423,7 +425,8 @@ procedure TfrmTemplateSearch.btnTemAcceptClick(Sender: TObject);
          tCallV(TempResults,'TMG CPRS PATIENT TOPIC SEARCH',[DFN,SearchString]);
          for I := 0 to TempResults.Count - 1 do begin
            Topic := piece(TempResults[i],'^',1);
-           SavedResults.Add(Topic+'#@@#'+TempResults[i]+'#@@#TOPIC');
+           //SavedResults.Add(Topic+'#@@#'+TempResults[i]+'#@@#TOPIC');
+           SavedResults.Add(Topic+'#@@#'+TempResults[i]+'#@@#PATIENT-SPECIFIC TOPIC');
          end;
          TempResults.free;
       end;

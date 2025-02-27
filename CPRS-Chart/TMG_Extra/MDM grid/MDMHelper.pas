@@ -92,6 +92,8 @@ type
     btnOldPtRefresh: TButton;
     btnTeleMedRefresh: TButton;
     lblChargeDetails: TLabel;
+    btnOKRelaunch: TBitBtn;
+    procedure btnOKRelaunchClick(Sender: TObject);
     procedure btnTeleMedRefreshClick(Sender: TObject);
     procedure btnOldPtRefreshClick(Sender: TObject);
     procedure btnNewPtRefreshTimeClick(Sender: TObject);
@@ -206,6 +208,7 @@ type
   public
     { Public declarations }
     CommonLog : TStrings;
+    Relaunch : boolean;   //elh 1/23/25
     procedure Reset;
     procedure SetEmbeddedMode(value : boolean; HolderForm : TForm = nil);
     property CPT : string read GetCPTOutput;
@@ -246,10 +249,10 @@ const
     ('', '99202', '99203', '99204', '99205')
   );
 
-  CPT_FOR_TIME : array[ptUndef..ptNew, -1..7] of string = (
-    ('', '', '', '', '', '', '', '', ''),
-    ('', '99212', '99213', '99214', '99215', '99215 + 99417x1', '99215 + 99417x2', '99215 + 99417x3', '99215 + 99417x4'),
-    ('', '99202', '99203', '99204', '99205', '99205 + 99417x1', '99205 + 99417x2', '99205 + 99417x3', '99205 + 99417x4')
+  CPT_FOR_TIME : array[ptUndef..ptNew, -1..9] of string = (
+    ('', '', '', '', '', '', '', '', '', '', ''),
+    ('', '99212', '99213', '99214', '99215', '99215 + 99417x1', '99215 + 99417x2', '99215 + 99417x3', '99215 + 99417x4', '99214 + G0438', '99214 + G0439'),
+    ('', '99202', '99203', '99204', '99205', '99205 + 99417x1', '99205 + 99417x2', '99205 + 99417x3', '99205 + 99417x4', '', '')
    );
 
   CPT_FOR_TELEMED_TIME : array[ptUndef..ptNew, -1..2] of string = (
@@ -427,6 +430,7 @@ end;
 
 procedure TfrmMDMGrid.FormCreate(Sender: TObject);
 begin
+  Relaunch := False;
   FFormSuccess := false;
   CommonLog := nil;
   FEmbeddedMode := false;
@@ -475,6 +479,8 @@ begin
   else memBillingModeHint.Color := clSkyBlue;
   }
 
+  tRadioButton(rgBillingMode.Controls[2]).enabled := False;        //added 1/16/25 to suppress AUDIO ONLY, without removing it
+
   {$IFNDEF STAND_ALONE_APP}
   CPTAvgPayments := TStringList.Create();
   tCallV(CPTAvgPayments,'TMG CPRS GET AVG INS CHARGES',[Patient.DFN]);
@@ -497,6 +503,7 @@ procedure TfrmMDMGrid.LoadPaymentInformation(CPTAvgPayments:TStringList);
       for i := 0 to Control.ControlCount-1 do begin
          if pos(CPT,TRadioButton(Control.Controls[i]).Caption)>0 then begin
             if pos('99417',TRadioButton(Control.Controls[i]).Caption)>0 then continue;
+            if pos(' + ',TRadioButton(Control.Controls[i]).Caption)>0 then continue;
             TRadioButton(Control.Controls[i]).Caption := piece2(TRadioButton(Control.Controls[i]).Caption,CPT,1)+CPT+' [Avg $'+Avg+'] '+piece2(TRadioButton(Control.Controls[i]).Caption,CPT,2);
             TRadioButton(Control.Controls[i]).Hint := 'Charge: $'+Charge+' Avg: $'+Avg+' High: $'+High+' Low: $'+Low;
             TRadioButton(Control.Controls[i]).ShowHint := True;
@@ -788,10 +795,11 @@ begin
 
   case FBillingMode of
     tcTime:        SetupTimeView(AUnitBefore);
-    tcTelemedTime: SetupTelemedTimeView(AUnitBefore);
+    // 1/16/25  tcTelemedTime: SetupTelemedTimeView(AUnitBefore);
     tcComplexity:  SetupComplexityView(AUnitBefore);
     tcCPE:         SetupCPEView(AUnitBefore);
   end;
+
   CurrentDisplayState.PatientType := FPatientType;
   CurrentDisplayState.BillingMode := FBillingMode;
 end;
@@ -1029,6 +1037,7 @@ begin
   if TempResult = 'undefined' then TempResult := '';  //kt 1/16/23
   lblResultValue.Caption := TempResult;
   btnOK.Enabled := (TempResult <> '');
+  btnOKRelaunch.Enabled := (TempResult <> '');
 end;
 
 function TfrmMDMGrid.GetCPTOutput : string;
@@ -1194,6 +1203,12 @@ begin
   end else begin
     self.Close;
   end;
+end;
+
+procedure TfrmMDMGrid.btnOKRelaunchClick(Sender: TObject);
+begin
+  Relaunch := True;
+  btnOKClick(Sender);
 end;
 
 procedure TfrmMDMGrid.rgNewPtTimeAmountClick(Sender: TObject);
@@ -1391,11 +1406,13 @@ begin
     //btnOK.Visible := true;
     btnOK.ModalResult := mrNone;
     btnCancel.Visible := false;
+    btnOKRelaunch.Visible := False;
     BorderStyle := bsNone;
   end else begin
     btnOK.Caption := '&OK';
     btnOK.ModalResult := mrOK;
     btnCancel.Visible := true;
+    btnOKRelaunch.Visible := True;
     BorderStyle := bsToolWindow;
   end;
 

@@ -235,6 +235,13 @@ inherited frmFollowUp: TfrmFollowUp
       Caption = 'As Prev Sched'
       OnClick = btnIntervalClick
     end
+    object lblNextAppt: TLabel
+      Left = 15
+      Top = 376
+      Width = 54
+      Height = 13
+      Caption = 'lblNextAppt'
+    end
     object edtFreeTxtFU: TEdit
       Left = 120
       Top = 120

@@ -3459,7 +3459,9 @@ begin
           break;
         end;
       end;
-      if not StringBetween(AString, DisplayText[FWaterMark], DisplayText[Items.Count - 1]) then begin
+      //if not StringBetween(AString, DisplayText[FWaterMark], DisplayText[Items.Count - 1]) then begin
+      //Altered this call to also handle cases where a comma is found like Partial Last, Partial First names
+      if (not StringBetween(AString, DisplayText[FWaterMark], DisplayText[Items.Count - 1])) or (pos(',',AString)>0) then begin
         x := AString;
         if LookupPiece <> 0 then begin
           index := GetStringIndex(x);

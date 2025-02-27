@@ -46,6 +46,7 @@ type
     rgInOffice: TRadioButton;
     memOutput: TMemo;
     btnNext: TBitBtn;
+    lblNextAppt: TLabel;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure btnNextClick(Sender: TObject);
@@ -520,6 +521,8 @@ begin
   LocationStr := '';
   NetOutput := '';
   HTMLNetOutput := '';
+
+  lblNextAppt.Caption := sCallV('TMG CPRS GET NEXT APPOINTMENT',[Patient.DFN,'0']);
 end;
 
 procedure TfrmFollowUp.SetupFollowUpMsg(SL : TStringList);
@@ -570,7 +573,7 @@ var Tag, InsertStr, Result : string;
     MessageArr : TStringList;
 begin
   if IsDirty=False then exit;   //Don't continue if nothing has been changed.  11/14/23
-  
+
   InsertStr := Trim(memOutput.Text);
   if InsertStr = '' then exit;
   InsertStr := piece2(InsertStr,'FOLLOW UP APPT: ',2);

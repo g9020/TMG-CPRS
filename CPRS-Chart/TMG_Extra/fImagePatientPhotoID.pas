@@ -509,7 +509,7 @@ procedure TfrmPatientPhotoID.FormShow(Sender: TObject);
     //END FROM CREATE
     UserCancelledUpload := False;
     if FDFN = '' then begin
-      MessageDlg('Which patient is selected??', mtError, [mbOK],0);
+      //This shouldn't be needed. 2/6/24 MessageDlg('Which patient is selected??', mtError, [mbOK],0);
       Self.ModalResult := mrCancel;
     end;
     if (FDragAndDropFile <> '') then begin

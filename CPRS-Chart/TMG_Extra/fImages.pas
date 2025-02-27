@@ -278,13 +278,13 @@ procedure TfrmImages.FormShow(Sender: TObject);
 var  TIUIEN : AnsiString;
 begin
   inherited;
+  Descending := True;
   mnuDeleteImage.Enabled := CanDeleteImages;
   TIUIEN := ActiveTIUIENForImages;
   ThumbnailDisplayMode := tThumbnail;
   if AllPatientImagesInfoList.Count = 0 then LoadAllPatientImagesInfoList();
   FZoom := DEFAULT_ZOOM;
   //ZoomReset;
-  Descending := False;
 end;
 
 { TPage common methods --------------------------------------------------------------------- }
@@ -652,7 +652,7 @@ begin
   end;
   lvThumbnails.Items.Count := AllPatientImagesInfoList.Count;
   btnSort.Caption := IfThen(Descending=False,'Currently In Ascending Order','Currently In Descending Order');
-  if Descending then  
+  if Descending then
     btnSort.Glyph.LoadFromFile('\\server1\public\vista\vista-art\icons\arrows\down-arrow-glyph-2.bmp')
   else
     btnSort.Glyph.LoadFromFile('\\server1\public\vista\vista-art\icons\arrows\up-arrow-glyph-2.bmp');
@@ -699,7 +699,7 @@ begin
   SDT := 0;   //Later allow user to change
   EDT := 9999999.999999;   //Later allow user to change
   ExcludeSL := nil; //implement later.
-  GetAllImages(AllPatientImagesInfoList, SDT, EDT, ExcludeSL);
+  GetAllImages(AllPatientImagesInfoList, SDT, EDT, ExcludeSL,Descending);
   //Data is returned in ascending chronological order.  I want to display in decending chronological order.
   for i := 0 to AllPatientImagesInfoList.Count - 1 do begin
     Rec := GetImageInfo(AllPatientImagesInfoList, i);

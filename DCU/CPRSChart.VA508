@@ -19,7 +19,7 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fMeds.dfm
 113
 46
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fNotes.dfm
-121429/1494500691
+121547/1514558502
 159
 92
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fDCSumm.dfm
@@ -35,7 +35,7 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fReports.dfm
 482
 84
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fPtSel.dfm
-19324/1490837061
+19324/1514559830
 566
 71
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fPtSens.dfm
@@ -991,7 +991,7 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fGUIEditFMFile.dfm
 10885
 2
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fImagePatientPhotoID.dfm
-37448/1458460070
+37448/1514559991
 10887
 2
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fImagePickExisting.dfm
@@ -1003,7 +1003,7 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fImagePickPDF.dfm
 10891
 2
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fImages.dfm
-937184/1461075353
+937185/1515812284
 10893
 37
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fImagesMultAddDlg.dfm
@@ -1147,7 +1147,7 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fSMSLabText.dfm
 11222
 2
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fSingleNote.dfm
-254299/1512276342
+261821/1513847376
 11224
 2
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fLabPicker.dfm
@@ -1191,11 +1191,11 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fViewLabPDF.dfm
 11574
 2
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\MDM grid\MDMHelper.dfm
-82697/1482787957
+105210/1513577185
 11576
 2
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fFrame.dfm
-141328/1498516247
+141237/1513847261
 11578
 144
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fProbs.dfm
@@ -1223,7 +1223,7 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fMeds.pas
 11863
 19
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fNotes.pas
-324775/1494502360
+325875/1513915976
 11882
 80
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fDCSumm.pas
@@ -1239,7 +1239,7 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fReports.pas
 12088
 52
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fPtSel.pas
-65236/1490773270
+65236/1514568413
 12140
 55
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fPtSens.pas
@@ -2195,7 +2195,7 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fGUIEditFMFile.pas
 16666
 46
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fImagePatientPhotoID.pas
-16936/1458462997
+16971/1514560012
 16712
 63
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fImagePickExisting.pas
@@ -2207,7 +2207,7 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fImagePickPDF.pas
 16818
 43
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fImages.pas
-35530/1461082198
+35538/1515816450
 16861
 74
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fImagesMultAddDlg.pas
@@ -2351,7 +2351,7 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fSMSLabText.pas
 18344
 10
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fSingleNote.pas
-59532/1512276982
+59771/1513391048
 18354
 16
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fLabPicker.pas
@@ -2395,11 +2395,11 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fViewLabPDF.pas
 18536
 48
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\MDM grid\MDMHelper.pas
-49246/1482787981
+49910/1513577060
 18584
 24
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fFrame.pas
-256902/1498516353
+257180/1513903210
 18608
 64
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\fProbs.pas
@@ -2479,11 +2479,11 @@ P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fNetworkMessengerClient.pas
 19111
 10
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fFollowUp.dfm
-12078/1466848410
+12221/1513455189
 19121
 46
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fFollowUp.pas
-17996/1466849972
+18107/1513455235
 19167
 13
 P:\vista\TMGCPRS v30A - GOOD\CPRS-Chart\TMG_Extra\fEncounterMDM.dfm
@@ -2782,7 +2782,7 @@ Data = (
 'Component = txtView'
 'Status = stsDefault'))
 end
-2773
+2779
 inherited frmNotes: TfrmNotes
 inherited amgrMain: TVA508AccessibilityManager
 Left = 16
@@ -13847,7 +13847,7 @@ object frmPtDiscreteData: TfrmPtDiscreteData
 object frmWinMessageLog: TfrmWinMessageLog
 75
 object frmSMSLabText: TfrmSMSLabText
-4007
+4116
 object frmSingleNote: TfrmSingleNote
 358
 object frmLabPicker: TfrmLabPicker
@@ -14199,9 +14199,9 @@ end
 object frmMultiTIUSign: TfrmMultiTIUSign
 1103
 object frmViewLabPDF: TfrmViewLabPDF
-1684
+1990
 object frmMDMGrid: TfrmMDMGrid
-3023
+3019
 inherited frmFrame: TfrmFrame
 inherited amgrMain: TVA508AccessibilityManager
 Left = 8
@@ -20987,7 +20987,7 @@ uses
   Dialogs, StdCtrls, Buttons, ToolWin, ComCtrls, ExtCtrls, TMGHTML2,
   OleCtrls, SHDocVw, MSHTML, ORFn, fLabs, uImages, uReminders,
   rTIU, uTIU, rCore, fDrawers, ORNet,Trpcb, WinSock, uPCE,
-  ORCtrls, ActnList, Menus, fReminderDialog;
+  ORCtrls, ActnList, Menus, fReminderDialog, ImgList;
 
 type
   tSNModes = (snmNone, snmLab, snmReport, snmNurse, snmMessenger, snmRecordsRequest, snmReminder);
@@ -21744,7 +21744,7 @@ uses
 
 type
   TfrmNetworkMessagerClient = class(TForm)
-419
+426
 inherited frmFollowUp: TfrmFollowUp
 inherited amgrMain: TVA508AccessibilityManager
 Left = 440
